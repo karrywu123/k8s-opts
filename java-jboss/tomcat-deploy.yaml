@@ -21,14 +21,14 @@ spec:
         ports:
         - name: http
           containerPort: 8080
-      volumeMounts:
-      - mountPath: "/usr/local/tomcat/webapps"
-        subPath: "tomcat/tomcat-data" #文件路径,以挂载的pvc为基准
-        name: tomcat-data
-    volumes:
-       - name: tomcat-data
-         persistentVolumeClaim:
-         claimName: gluster-claim-default-pub
+        volumeMounts:
+        - mountPath: "/usr/local/tomcat/"
+          subPath: "tomcat" #文件路径,以挂载的pvc为基准
+          name: tomcat
+      volumes:
+      - name: tomcat
+        persistentVolumeClaim:
+        claimName: gluster-claim-default-pub
 
 apiVersion: v1
 kind: Service
